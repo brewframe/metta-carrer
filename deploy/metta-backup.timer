@@ -1,0 +1,10 @@
+# /etc/systemd/system/metta-backup.timer  ->  systemctl enable --now metta-backup.timer
+[Unit]
+Description=Cadangan harian Metta Career
+
+[Timer]
+OnCalendar=*-*-* 02:30:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

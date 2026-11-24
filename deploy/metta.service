@@ -1,0 +1,29 @@
+# /etc/systemd/system/metta.service  ->  systemctl enable --now metta
+[Unit]
+Description=Metta Career
+After=network.target
+
+[Service]
+User=metta
+Group=metta
+WorkingDirectory=/opt/metta-career-app
+EnvironmentFile=/etc/metta/metta.env
+ExecStart=/opt/metta-career-app/.venv/bin/python -m uvicorn metta.app:app --host 127.0.0.1 --port 8000 --proxy-headers --forwarded-allow-ips 127.0.0.1 --no-server-header --workers 2
+Restart=on-failure
+RestartSec=3
+# Pengerasan: server hanya boleh menulis ke /var/lib/metta
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+CapabilityBoundingSet=
+ReadWritePaths=/var/lib/metta
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

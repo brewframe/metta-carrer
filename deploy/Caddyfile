@@ -1,0 +1,11 @@
+# Ganti metta.namasekolah.sch.id dengan alamat web sekolah. Caddy mengurus sertifikat HTTPS otomatis.
+metta.namasekolah.sch.id {
+	encode gzip
+	request_body {
+		max_size 1MB
+	}
+	reverse_proxy 127.0.0.1:8000
+	log {
+		output file /var/log/caddy/metta.log
+	}
+}

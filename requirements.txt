@@ -1,0 +1,4 @@
+# Version ranges (bounded so a surprise major upgrade cannot break or weaken the app). Exact tested versions: requirements-tested.txt
+starlette>=1.6,<2
+uvicorn>=0.30,<1
+pydantic>=2.6,<3

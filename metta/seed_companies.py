@@ -1,0 +1,102 @@
+"""Daftar DU/DI PKL (55 tempat dari slide sekolah) + data yang SUDAH terverifikasi dari sumber web.
+
+Aturan: tidak mengarang. Tempat tanpa sumber publik diberi verified=0 dan alamat/uraian kosong;
+sektor hanya ditebak dari nama yang jelas (sector_guess=1) dan ditandai di tampilan.
+Admin / guru bisa melengkapi lewat menu Companies.
+Tuple: (no, nama, alamat, sektor_en, sektor_id, about_en, about_id, sumber, verified, tebakan_sektor)"""
+
+def _u(no, name, sec=("", ""), guess=1):
+    return (no, name, "", sec[0], sec[1], "", "", "", 0, 1 if sec[0] else 0)
+
+KOMP = ("Computer & IT shop", "Toko komputer & IT")
+PAJAK = ("Tax consulting", "Konsultan pajak")
+OTO = ("Automotive", "Otomotif")
+
+ROWS = [
+ _u(1, "Asia Group"),
+ (2, "Asuransi Sinar Mas Pekanbaru", "", "Insurance", "Asuransi", "An insurance company. The Pekanbaru branch address is not verified yet.", "Perusahaan asuransi. Alamat kantor cabang Pekanbaru belum terverifikasi.", "sinarmas.co.id (hasil pencarian)", 0, 0),
+ _u(3, "Bank Seraya", ("Bank", "Bank")),
+ _u(4, "Cstev Picture", ("Photo / video / media", "Foto / video / media")),
+ _u(5, "CV Sentral Utama Raya (Toko SUR)", ("Shop / retail", "Toko / ritel")),
+ _u(6, "CV Solusi Pajak", PAJAK),
+ _u(7, "CV Sumber Tirta Anugerah"),
+ _u(8, "CV. Lily Savana Raya"),
+ _u(9, "CV. Mitra Solution Taxindo", PAJAK),
+ _u(10, "CV. Schonheit Kosmetika Indonesia", ("Cosmetics", "Kosmetik")),
+ _u(11, "D'Unik Office"),
+ _u(12, "Fransilvia Consulting", ("Consulting", "Konsultan")),
+ _u(13, "Global Bangunan Nangka", ("Building materials", "Bahan bangunan")),
+ _u(14, "Global Sinar Lestari"),
+ _u(15, "Jotasindo Prima Sentosa"),
+ _u(16, "Kantor Konsultan Pajak Yapen Procount", PAJAK),
+ _u(17, "Kota Computer", KOMP),
+ _u(18, "Percetakan Chintami", ("Printing", "Percetakan")),
+ _u(19, "PKL di Diklat PBSM"),
+ _u(20, "Plasa Komputer", KOMP),
+ (21, "Politeknik Caltex Riau", "Jl. Umban Sari (Patin) No. 1, Rumbai, Pekanbaru 28265", "Higher education", "Perguruan tinggi",
+  "A polytechnic campus with study programs, a library, student units and scholarships. Good for IT, administration and campus-support tasks.",
+  "Kampus politeknik dengan program studi, perpustakaan, unit kegiatan mahasiswa, dan beasiswa. Cocok untuk tugas IT, administrasi, dan pendukung kampus.", "idalamat.com/alamat/36729 (telp. 0761-53939)", 1, 0),
+ _u(22, "Powerlighting", ("Lighting", "Pencahayaan / lampu")),
+ _u(23, "PT Anugrah Tani Makmur", ("Agriculture", "Pertanian")),
+ (24, "PT Capella Dinamik Nusantara", "Jl. Tuanku Tambusai 128 C-D, Sukajadi, Pekanbaru", "Automotive (Honda dealer)", "Otomotif (dealer Honda)",
+  "An automotive company operating under the Capella Honda name: car sales, service and administration.",
+  "Perusahaan otomotif dengan nama Capella Honda: penjualan, servis, dan administrasi mobil.", "kitalulus.com/company/pt-capella-dinamik-nusantara-05y8", 1, 0),
+ (25, "PT Capella Honda", "Jl. Soekarno-Hatta No. 88, Pekanbaru (Capella Honda 88)", "Automotive (Honda dealer)", "Otomotif (dealer Honda)",
+  "A Honda dealer. Capella has several branches in Pekanbaru, so confirm which branch you are placed at.",
+  "Dealer Honda. Capella punya beberapa cabang di Pekanbaru, jadi pastikan cabang tempat kamu ditempatkan.", "oto.com (dealer Honda Pekanbaru)", 1, 0),
+ _u(26, "PT Citra Andalan Mobilindo Cemerlang", OTO),
+ _u(27, "PT Ekasapta Paramitha Energi", ("Energy", "Energi")),
+ _u(28, "PT Everbright"),
+ _u(29, "PT Global Bangunan", ("Building materials", "Bahan bangunan")),
+ _u(30, "PT Harapan Asia Nusantara"),
+ _u(31, "PT Huthama Cahaya Langgeng"),
+ (32, "PT J&T Pekanbaru", "Jl. Dr. Setiabudi No. 44, 46, Pesisir, Pekanbaru 28141", "Logistics & delivery", "Logistik & ekspedisi",
+  "J&T Express office: parcel and e-commerce delivery, shipment tracking, admin and sorting.",
+  "Kantor J&T Express: pengiriman paket dan e-commerce, pelacakan kiriman, administrasi, dan penyortiran.", "idalamat.com/alamat/106777", 1, 0),
+ _u(33, "PT panca sumber disel", OTO),
+ _u(34, "PT Pasar Buah 88", ("Fruit shop / retail", "Toko buah / ritel")),
+ _u(35, "PT Peputra Masterindo"),
+ (36, "PT Putra Mahkota Raya (Novotel)", "Novotel Pekanbaru, Jalan Riau No. 59, Pekanbaru 28154", "Hotel", "Hotel",
+  "A city-centre hotel with a business center, concierge, laundry, room service, restaurant and bar, pool and spa. Tasks: front office, housekeeping, food and beverage, admin.",
+  "Hotel di pusat kota dengan business center, concierge, laundry, room service, restoran dan bar, kolam renang, dan spa. Tugas: front office, housekeeping, food & beverage, administrasi.", "successfulmeetings.com (Novotel Pekanbaru)", 1, 0),
+ (37, "PT Surya Inti Primakarya", "Jl. Riau No. 26, Kampung Baru, Senapelan, Pekanbaru", "Export-import services", "Jasa ekspor dan impor",
+  "A company in export and import services. Another listing shows a second address (Jl. Kulim No. 35 K), so confirm the office you are placed at.",
+  "Perusahaan jasa ekspor dan impor. Satu daftar lain menyebut alamat kedua (Jl. Kulim No. 35 K), jadi pastikan kantor tempat kamu ditempatkan.", "kitalulus.com/company/pt-surya-inti-primakarya-edc4", 1, 0),
+ _u(38, "PT Tumpuan"),
+ (39, "PT Yogura Tekindo", "Jl. Kamboja No. 50-C, Sukajadi, Pekanbaru 28121", "Supplier", "Pemasok (supplier)",
+  "A supplier company. Tasks may include stock, invoices and customer administration.",
+  "Perusahaan pemasok (supplier). Tugas bisa meliputi stok, faktur, dan administrasi pelanggan.", "kitalulus.com/company/pt-yogura-tekindo-a4gz", 1, 0),
+ _u(40, "PT. Bengkalis Kuda Laut (S3Mart Auto Arengka)", OTO),
+ _u(41, "PT. Calispo Jaya Abadi"),
+ (42, "PT. Primanusa global indo", "Jl. Riau Ujung No. 349, Tampan, Payung Sekaki, Pekanbaru 28292", "GPS tracking & CCTV", "GPS tracking & CCTV",
+  "A supplier of GPS and fleet monitoring and CCTV (Gtrack brand). Good for TKJ: installation, network and device support. Note: another source lists the head office in Tangerang, so confirm the branch with your teacher.",
+  "Pemasok GPS, monitoring armada, dan CCTV (merek Gtrack). Cocok untuk TKJ: instalasi, jaringan, dan dukungan perangkat. Catatan: sumber lain menulis kantor pusat di Tangerang, jadi pastikan cabangnya ke guru.", "kitalulus.com/company/pt-primanusa-globalindo-g1m5", 1, 0),
+ _u(43, "PT. Rovina Saja Sentosa"),
+ _u(44, "PT. Sejahtera Inti Plastika", ("Plastics", "Plastik")),
+ (45, "Rumah Sakit PMC", "Jl. Lembaga Pemasyarakatan No. 25, Suka Maju, Sail, Pekanbaru 28126", "Hospital", "Rumah sakit",
+  "A hospital with inpatient rooms, doctors and nurses. Tasks: registration, medical records, billing, hospital administration. Name match (Pekanbaru Medical Center) must be confirmed by your teacher.",
+  "Rumah sakit dengan rawat inap, dokter, dan perawat. Tugas: pendaftaran, rekam medis, kasir, administrasi rumah sakit. Kecocokan nama (Pekanbaru Medical Center) perlu dikonfirmasi ke guru.", "idalamat.com/alamat/1038480 (telp. 0761-848100)", 1, 0),
+ _u(46, "Sakti Karya Wacana Dua"),
+ _u(47, "Satya Wijaya Brama"),
+ _u(48, "Sentosa Anugerah Motor", OTO),
+ _u(49, "Sigma Komputer", KOMP),
+ _u(50, "Sunmo Yapen Consultan", ("Consulting", "Konsultan")),
+ _u(51, "Tekno Komputer", KOMP),
+ (52, "Televisi Republik Indonesia (TVRI)", "TVRI Riau, Jl. Durian No. 24, Pekanbaru", "TV broadcasting", "Penyiaran televisi",
+  "A public TV station: media, creative and production work (camera, editing, graphics, admin).",
+  "Stasiun televisi publik: media, kreatif, dan produksi (kamera, editing, grafis, administrasi).", "kitalulus.com/company/tvri-riau-zmvg", 1, 0),
+ (53, "The Premiere Hotel", "Jl. Jend. Sudirman No. 389, Simpang Empat, Pekanbaru 28116", "Hotel", "Hotel",
+  "A 4-star hotel with 168 rooms, 3 restaurants, fitness, banquet and conference rooms, a 24-hour front desk and airport pick-up. Tasks: front office, food and beverage, housekeeping, admin.",
+  "Hotel bintang 4 dengan 168 kamar, 3 restoran, fitness, ruang banquet dan konferensi, front desk 24 jam, dan antar-jemput bandara. Tugas: front office, food & beverage, housekeeping, administrasi.", "trip.com (The Premiere Hotel Pekanbaru)", 1, 0),
+ (54, "Universitas Muhammadiyah Riau", "Jl. KH. Ahmad Dahlan No. 88, Sukajadi, Pekanbaru 28156", "Higher education", "Perguruan tinggi",
+  "A university campus. Tasks: academic administration, IT support, library, office work.",
+  "Kampus universitas. Tugas: administrasi akademik, dukungan IT, perpustakaan, pekerjaan kantor.", "idalamat.com/alamat/36747 (telp. 0761-35008)", 1, 0),
+ _u(55, "Vision Pemuda City Walk"),
+]
+
+# Pertanyaan yang bisa siswa ajukan ke tempat PKL yang datanya belum terverifikasi
+ASK = [("What does the company do?", "Perusahaan ini bergerak di bidang apa?"),
+       ("What tasks will an intern do each day?", "Apa tugas harian siswa PKL?"),
+       ("Which majors do you accept?", "Jurusan apa yang diterima?"),
+       ("Work hours, dress code and allowance?", "Jam kerja, seragam, dan uang saku?"),
+       ("Who is the supervisor and what is the exact address?", "Siapa pembimbingnya dan apa alamat lengkapnya?")]

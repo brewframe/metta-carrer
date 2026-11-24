@@ -1,0 +1,17 @@
+# /etc/systemd/system/metta-backup.service
+[Unit]
+Description=Cadangan database Metta Career
+
+[Service]
+Type=oneshot
+User=metta
+Group=metta
+WorkingDirectory=/opt/metta-career-app
+EnvironmentFile=/etc/metta/metta.env
+ExecStart=/opt/metta-career-app/.venv/bin/python -m metta.backup
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/metta
+UMask=0077
